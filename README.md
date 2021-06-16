@@ -1,6 +1,10 @@
 # dotnet-img-proxy
 URL generation, img-proxy compatible
 
+---
+
+https://www.nuget.org/packages/DotnetImgProxy/
+
 ## How to use
 
 1) Install the package
