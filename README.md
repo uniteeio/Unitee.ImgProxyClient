@@ -1,3 +1,5 @@
+![Nuget](https://img.shields.io/nuget/v/DotnetImgProxy)
+
 # dotnet-img-proxy
 URL generation, img-proxy compatible
 
