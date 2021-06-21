@@ -52,7 +52,7 @@ public class MyController : Controller
 6) Use it like:
 
 ```razor
-@using ImageProxyService _img;
+@inject ImageProxyService _img;
 
 
 @foreach (var user in Model)
