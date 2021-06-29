@@ -41,7 +41,7 @@ namespace DotnetImgProxy
 
             if (options.Width.HasValue && options.Height.HasValue)
             {
-                processingOptions.Append($"resize:{options.ResizeType}:{options.Width}:{options.Height}:{(options.Enlarge ? 1 : 0)}:0/");
+                processingOptions.Append($"resize:{options.ResizeType}:{options.Width}:{options.Height}:{(options.Enlarge ? 1 : 0)}:{(options.Extend ? 1 : 0)}/");
 
                 // default dpr is 2 for retina screen
                 processingOptions.Append($"dpr:{options.Dpr}/");

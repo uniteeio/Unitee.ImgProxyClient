@@ -7,6 +7,7 @@ namespace DotnetImgProxy
         public string Format { get; set; }
         public string ResizeType { get; set; } = "fill";
         public bool Enlarge { get; set; } = false;
+        public bool Extend { get; set; } = false;
         public int Dpr { get; set; } = 2;
     }
 }
