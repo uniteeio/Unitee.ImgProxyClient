@@ -52,6 +52,11 @@ namespace DotnetImgProxy
                 processingOptions.Append($"format:{options.Format}/");
             }
 
+            if (!string.IsNullOrEmpty(options.Extra))
+            {
+                processingOptions.Append($"{options.Extra}/");
+            }
+
             return $"{baseUrl}/insecure/{processingOptions}{b64}";
         }
     }
