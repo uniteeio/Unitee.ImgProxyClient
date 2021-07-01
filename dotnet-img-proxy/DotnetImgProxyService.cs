@@ -33,7 +33,7 @@ namespace DotnetImgProxy
 
             if (!string.IsNullOrEmpty(_commonOptions))
             {
-                processingOptions.Append($"${_commonOptions}/");
+                processingOptions.Append($"{_commonOptions}/");
             }
 
             if (options.Width.HasValue && !options.Height.HasValue)
