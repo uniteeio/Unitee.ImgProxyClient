@@ -6,10 +6,12 @@ namespace DotnetImgProxy
     public class ImageProxyService
     {
         private readonly string _imgProxyBaseUrl;
+        private readonly string _commonOptions;
 
-        public ImageProxyService(string imgProxyBaseUrl)
+        public ImageProxyService(string imgProxyBaseUrl, string commonOptions)
         {
             _imgProxyBaseUrl = imgProxyBaseUrl;
+            _commonOptions = commonOptions;
         }
 
         public string GetUrl(string originalUrl, ImageProxyOptions options = null)
@@ -28,6 +30,11 @@ namespace DotnetImgProxy
             var b64 = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(originalUrl));
 
             var processingOptions = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(_commonOptions))
+            {
+                processingOptions.Append($"${_commonOptions}/");
+            }
 
             if (options.Width.HasValue && !options.Height.HasValue)
             {
