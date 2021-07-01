@@ -60,3 +60,24 @@ public class MyController : Controller
    <img src="@_img.GetUrl(user.Avatar)" />
 }
 ```
+
+
+## Extra options
+
+Use options for each request in the project
+
+ ```cs
+ services.AddDotnetImgProxy(Configuration, "max_bytes:10000");
+ ```
+ 
+ Use the extra file to add options that are not (yet) implemented in the `ImageProxyOptions`:
+ 
+ ```cs
+ _imgProxyService.GetUrl(user.avatar, new ImageProxyOptions
+ {
+     Width = 32,
+     Height = 32,
+     Extra = "max_bytes:10000",
+ }
+ ```
+ 
