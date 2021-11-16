@@ -9,6 +9,7 @@ namespace DotnetImgProxy
         public bool Enlarge { get; set; } = false;
         public bool Extend { get; set; } = false;
         public int Dpr { get; set; } = 2;
+        public bool? AutoRotate { get; set; }
         public string Extra { get; set; } = null;
     }
 }

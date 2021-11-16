@@ -64,6 +64,11 @@ namespace DotnetImgProxy
                 processingOptions.Append($"{options.Extra}/");
             }
 
+            if (options.AutoRotate.HasValue)
+            {
+                processingOptions.Append($"auto_rotate:{(options.AutoRotate.Value ? 1 : 0)}/");
+            }
+
             return $"{baseUrl}/insecure/{processingOptions}{b64}";
         }
     }
