@@ -40,4 +40,4 @@ jobs:
           echo ${GITHUB_REF##*/}
 
       - name: Push generated package to GitHub registry
-        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg --skip-duplicate --no-symbols true
+        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -k oy2gob6lyoyhl4ogt5kq42c2fdok644efpak4qsyqs6h4u -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols
