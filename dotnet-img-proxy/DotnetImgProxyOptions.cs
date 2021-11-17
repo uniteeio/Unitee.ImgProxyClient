@@ -12,5 +12,6 @@ namespace DotnetImgProxy
         public bool? AutoRotate { get; set; }
         public string Extra { get; set; } = null;
 
+        public string testAction { get; set; }
     }
 }
