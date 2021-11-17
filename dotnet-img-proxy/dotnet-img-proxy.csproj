@@ -2,9 +2,9 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>DotnetImgProxy</RootNamespace>
-    <PackageId>DotnetImgProxy</PackageId>
+    <PackageId>TestDotnetImgProxy</PackageId>
     <Version>1.4.0</Version>
-    <Authors>Titouan CREACH</Authors>
+    <Authors>Justin Vanier</Authors>
     <Company>Ünitee</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
