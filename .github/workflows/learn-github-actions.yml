@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run a one-line script
-        run: echo "new version"
+        run: echo ${{github.ref}}
   build:
     if: contains(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
@@ -23,4 +23,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run a one-line script
-        run: echo ${{github.ref}}
+        run: echo "new version"
