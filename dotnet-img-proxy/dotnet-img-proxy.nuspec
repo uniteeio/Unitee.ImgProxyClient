@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>TestDotnetImgProxy</id>
+    <version>1.4.0</version>
+    <title>TestDotnetImgProxy</title>
+    <authors>Justin Vanier</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/JustinVanier/dotnet-img-proxy</projectUrl>
+    <description>Test dotnet img proxy</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>copyright 2021</copyright>
+    <tags>v1.4.0</tags>
+  </metadata>
+</package>
