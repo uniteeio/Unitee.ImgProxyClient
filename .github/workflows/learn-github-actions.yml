@@ -5,17 +5,7 @@ on:
     branches:
       - main
 
-    tags:
-      - v*
-
 jobs:
-  check_tag:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Run a one-line script
-        run: echo ${{github.ref}}
   build:
     if: contains(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
