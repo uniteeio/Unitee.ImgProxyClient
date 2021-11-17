@@ -3,7 +3,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>DotnetImgProxy</RootNamespace>
     <PackageId>TestDotnetImgProxy</PackageId>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <Authors>Justin Vanier</Authors>
     <Company>Ünitee</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

@@ -35,6 +35,7 @@ jobs:
       - name: Build solution and generate NuGet package
         run: |  
           cd dotnet-img-proxy
+          dotnet clean
           dotnet build -c Release
           dotnet pack -c Release -o out
           echo ${GITHUB_REF##*/}
