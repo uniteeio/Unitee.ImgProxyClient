@@ -1,8 +1,8 @@
 name: pushing tag version for release
 
 on:
-	push:
-		branches:
+  push:
+    branches:
       - main
     pull_request:
       types: [closed]
@@ -17,5 +17,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run a one-line script
-        run: echo Hello from Justin
-
+        run: echo Hello from Justin1
