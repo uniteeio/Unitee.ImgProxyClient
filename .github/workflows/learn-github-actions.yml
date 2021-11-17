@@ -16,5 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run a one-line script
-        run: echo "${{ github.event.head_commit.message }}"
+      if: "!contains(github.event.head_commit.message, 'v.')"
+        - name: Run a one-line script
+          run: echo "new version"
