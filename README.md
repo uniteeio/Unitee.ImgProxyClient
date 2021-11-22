@@ -62,11 +62,11 @@ public class MyController : Controller
 ```
 
 
-## All available options
+## Available options
 
-List of the options that are implemented in the `ImageProxyOptions`:
+List of the options implemented in the `ImageProxyOptions.cs`:
 
-[ImageProxyOptions link](./dotnet-img-proxy/DotnetImgProxyOptions.cs)
+[./dotnet-img-proxy/DotnetImgProxyOptions.cs](./dotnet-img-proxy/DotnetImgProxyOptions.cs)
 
 
 ## Extra options
