@@ -22,16 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run a one-line script
-        run: echo ${GITHUB_REF##*/}
-
-      - name: Setup .NET Core @ Latest
-        uses: actions/setup-dotnet@v1
-        with:
-          source-url: https://api.nuget.org/v3/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
       - name: Build solution and generate NuGet package
         run: |  
           cd dotnet-img-proxy
@@ -40,7 +30,5 @@ jobs:
           dotnet pack -c Release -o out
           echo ${GITHUB_REF##*/}
 
-      - name: Push generated package to GitHub registry
-        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -k ${GITHUB_TOKEN} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push generated package
+        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
