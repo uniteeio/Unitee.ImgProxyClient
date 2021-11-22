@@ -22,8 +22,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: set RELEASE_VERSION
+      - id: get_version
         uses: battila7/get-version-action@v2
+      
+      - name: set RELEASE_VERSION
         run: echo "RELEASE_VERSION=${{ steps.get_version.outputs.version-without-v }}" >> $GITHUB_ENV
 
       - name: Build solution and generate NuGet package
