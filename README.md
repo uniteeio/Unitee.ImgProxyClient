@@ -62,6 +62,13 @@ public class MyController : Controller
 ```
 
 
+## All available options
+
+List of the options that are implemented in the `ImageProxyOptions`:
+
+[ImageProxyOptions link](./dotnet-img-proxy/DotnetImgProxyOptions.cs)
+
+
 ## Extra options
 
 Use options for each request in the project
@@ -80,4 +87,3 @@ Use options for each request in the project
      Extra = "max_bytes:10000",
  }
  ```
- 
