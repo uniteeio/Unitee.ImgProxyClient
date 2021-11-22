@@ -23,13 +23,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set Versions
-      uses: actions/github-script@v4
-      id: set_version
-      with:
-        script: |
-          const tag = ${GITHUB_REF##*/}
-          const no_v = tag.replace('v', '')
-          core.setOutput('tag', tag)
-          core.setOutput('no_v', no_v)
-      run:
-        echo no_v
+        uses: actions/github-script@v4
+        id: set_version
+        with:
+          script: |
+            const tag = ${GITHUB_REF##*/}
+            const no_v = tag.replace('v', '')
+            core.setOutput('tag', tag)
+            core.setOutput('no_v', no_v)
+        run:
+          echo no_v
