@@ -22,12 +22,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: jungwinter/split@v2
+        id: split
+        with:
+          msg: ${GITHUB_REF##*/}
+          separator: 'v'
+
+      - name: release package
+        uses: actions/create-release@latest
+        with:
+          release_name: Release ${{ steps.split.outputs._0 }}
+          tag_name: ${{ steps.split.outputs._1 }}
+
       - name: Build solution and generate NuGet package
         run: |  
           cd dotnet-img-proxy
           dotnet clean
           dotnet build -c Release
-          dotnet pack -c Release -o out
+          dotnet pack -p:Version:${GITHUB_REF##*/} -c Release -o out
           echo ${GITHUB_REF##*/}
 
       - name: Push generated package
