@@ -30,7 +30,7 @@ jobs:
         with:
           source-url: https://api.nuget.org/v3/index.json
         env:
-          NUGET_AUTH_TOKEN: oy2gob6lyoyhl4ogt5kq42c2fdok644efpak4qsyqs6h4u
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Build solution and generate NuGet package
         run: |  
@@ -41,4 +41,4 @@ jobs:
           echo ${GITHUB_REF##*/}
 
       - name: Push generated package to GitHub registry
-        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -k oy2gob6lyoyhl4ogt5kq42c2fdok644efpak4qsyqs6h4u -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
+        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -k ${{secrets.GITHUB_TOKEN}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
