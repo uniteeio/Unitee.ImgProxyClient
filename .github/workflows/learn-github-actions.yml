@@ -22,21 +22,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: set env tag version
+      - name: set RELEASE_VERSION
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
-      - name: Test
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
+      - name: version
+        run:
+          echo ${GITHUB_REF##*/}.replace('v', '')
 
-      - name: Set Versions
-        uses:  actions/github-script@v4
-        id: set_version
-        with:
-          script: |
-            const tag = $RELEASE_VERSION
-            const no_v = tag.replace('v', '')
-            core.setOutput('tag', tag)
-            core.setOutput('no_v', no_v)
-            echo no_v
+      - name: Build solution and generate NuGet package
+        run: |  
+          cd dotnet-img-proxy
+          dotnet clean
+          dotnet build -c Release
+          dotnet pack -p:Version:$RELEASE_VERSION -c Release -o out
+
