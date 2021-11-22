@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - id: get_version
+      - name: get_version
         uses: battila7/get-version-action@v2
       
       - name: set RELEASE_VERSION
@@ -28,4 +28,4 @@ jobs:
           dotnet pack -c Release -p:Version=${RELEASE_VERSION} -o out
 
       - name: Push generated package
-        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -k  ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
+        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
