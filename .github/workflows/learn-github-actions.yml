@@ -32,6 +32,6 @@ jobs:
         run: |  
           cd dotnet-img-proxy
           dotnet clean
-          dotnet build -c Release
-          dotnet pack -p:Version:$RELEASE_VERSION -c Release -o out
+          dotnet build -c Release /p:Version=${RELEASE_VERSION}
+          dotnet pack -c Release /p:Version=${RELEASE_VERSION} -o out
 
