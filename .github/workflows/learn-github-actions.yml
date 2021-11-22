@@ -9,13 +9,6 @@ on:
       - v*
 
 jobs:
-  check_tag:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Run a one-line script
-        run: echo ${{github.ref}}
   build:
     if: contains(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
@@ -28,10 +21,12 @@ jobs:
       - name: set RELEASE_VERSION
         run: echo "RELEASE_VERSION=${{ steps.get_version.outputs.version-without-v }}" >> $GITHUB_ENV
 
-      - name: Build solution and generate NuGet package
+      - name: Build and generate NuGet package
         run: |  
           cd dotnet-img-proxy
           dotnet clean
           dotnet build -c Release /p:Version=${RELEASE_VERSION}
           dotnet pack -c Release /p:Version=${RELEASE_VERSION} -o out
 
+      - name: Push generated package
+        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -k  ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
