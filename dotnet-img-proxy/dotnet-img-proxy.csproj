@@ -3,8 +3,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>DotnetImgProxy</RootNamespace>
     <PackageId>DotnetImgProxy</PackageId>
-    <Version>1.4.0</Version>
-    <Authors>Titouan CREACH</Authors>
+    <Authors>Titouan CREACH et Justin VANIER</Authors>
     <Company>Ünitee</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
