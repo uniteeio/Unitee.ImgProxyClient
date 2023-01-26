@@ -23,9 +23,9 @@ jobs:
 
       - name: Build and generate NuGet package
         run: |  
-          cd dotnet-img-proxy
+          cd Unitee.ImgProxyClient
           dotnet build -c Release -p:Version=${RELEASE_VERSION}
           dotnet pack -c Release -p:Version=${RELEASE_VERSION} -o out
 
       - name: Push generated package
-        run: dotnet nuget push /home/runner/work/dotnet-img-proxy/dotnet-img-proxy/dotnet-img-proxy/out/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
+        run: dotnet nuget push /home/runner/work/Unitee.ImgProxyClient/Unitee.ImgProxyClient/Unitee.ImgProxyClient/out/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
