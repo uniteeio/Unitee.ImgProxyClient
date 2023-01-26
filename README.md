@@ -72,7 +72,7 @@ public class MyController : Controller
 
 **OR directly from cshtml (prefered)**
 
-5) In `_ViewImports.cshtml`, add `@using DotnetImgProxy`
+5) In `_ViewImports.cshtml`, add `@using Unitee.ImgProxyClient`
 
 6) Use it like:
 
@@ -81,12 +81,9 @@ public class MyController : Controller
 
 @foreach (var user in Model)
 {
-   <img src="@_img.GetUrl(user.Avatar, new ImageProcessingOptions { Format = "wepb" })" />
+   <img src="@_img.GetUrl(user.Avatar, new ImgProcessingOptions { Format = "wepb" })" />
 }
 ```
-
-You can add the import: `@using Unitee.ImgProxyClient` in `_ViewImports.cshtml`
-
 
 ## Available options
 
