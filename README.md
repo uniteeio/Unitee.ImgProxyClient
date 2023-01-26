@@ -1,30 +1,54 @@
 ![Nuget](https://img.shields.io/nuget/v/DotnetImgProxy)
 
-# dotnet-img-proxy
-URL generation, img-proxy compatible
+# Unitee.ImgProxy
+
+Url generation for ImgProxy
 
 ---
 
-https://www.nuget.org/packages/DotnetImgProxy/
+https://www.nuget.org/packages/Unitee.ImgProxy/
 
-## How to use
+## Quick start
 
-1) Install the package
-2) Configure an environment variable: `IMG_PROXY_BASE_URL` without the trailing slash, defaulted to https://img.unitee.io.
+1) Install the package (`dotnet add package Unitee.ImgProxy`)
+2) Configure your AppSettings:
+
+```json
+{
+    ...,
+
+    "ImgProxy": {
+        "Key": "mysecretkey", // optional
+        "Salt": "mysecretsalt", // optional
+        "BaseUrl": "https://my-instance-of-img-proxy-or-cdn.com"
+    }
+}
+```
+
+More info on how to generate salt and key: https://docs.imgproxy.net/configuration?id=url-signature
+Be sure you have correclty configured `IMGPROXY_KEY` and `IMGPROXY_SALT` on the server with the same values.  
+If `Key` or `Salt` is missing, we will generate **insecure** urls.
+
+Remember, you can sign the url even if `IMGPROXY_KEY` or `IMGPROXY_SALT` has been provided. So that, you can first migrate the code, then the server.
+
+
 3) Register the service:
 
 ```cs
-  services.AddDotnetImgProxy(Configuration);
+builder.Services.AddImgProxyClient(builder.Configuration, "max_bytes:1000000" /* optional */);
 ```
+
+You can add global options that will be used for all requests.
+
 4) Use it from the controller:
 
 ```cs
 public class MyController : Controller
 {
-    private readonly ImageProxyService _imgProxyService;
+    private readonly ImgProxyService _imgProxyService;
     private readonly MyUserManager _myUserManager;
 
-    public MyController(ImageProxyService imgProxyService, MyUserManager myUserManager)
+    public MyController(ImgProxyService imgProxyService, MyUserManager myUserManager)
     {
         _imgProxyService = imgProxyService;
         _myUserManager = myUserManager
@@ -32,15 +56,16 @@ public class MyController : Controller
 
     public MyAction()
     {
-        return View(from user in _myUserManager
+        return View(from user in _myUserManager.GetAll()
                     select new UserViewModel
                     {
-                        Avatar = _imgProxyService.GetUrl(user.avatar, new ImageProxyOptions
+                        Avatar = _imgProxyService.GetUrl(user.Avatar, new ImgProcessingOptions
                         {
                             Width = 32,
                             Height = 32,
                         }
                 };
+        )
     }
 }
 ```
@@ -52,35 +77,35 @@ public class MyController : Controller
 6) Use it like:
 
 ```razor
-@inject ImageProxyService _img;
-
+@inject ImgProxyService _img;
 
 @foreach (var user in Model)
 {
-   <img src="@_img.GetUrl(user.Avatar)" />
+   <img src="@_img.GetUrl(user.Avatar, new ImageProcessingOptions { Format = "wepb" })" />
 }
 ```
+
+You can add the import: `@using Unitee.ImgProxyClient` in `_ViewImports.cshtml`
 
 
 ## Available options
 
 List of the options implemented in the `ImageProxyOptions.cs`:
 
-[./dotnet-img-proxy/DotnetImgProxyOptions.cs](./dotnet-img-proxy/DotnetImgProxyOptions.cs)
-
+[./Unitee.ImgProxyClient/ImgProcessingOptions.cs](./Unitee.ImgProxyClient/ImgProcessingOptions.cs)
 
 ## Extra options
 
 Use options for each request in the project
 
  ```cs
- services.AddDotnetImgProxy(Configuration, "max_bytes:10000");
+ builder.Services.AddImgProxyClient(builder.Configuration, "max_bytes:10000");
  ```
  
- Use the extra file to add options that are not (yet) implemented in the `ImageProxyOptions`:
+ Use the `Extra` field to add options that are not (yet) implemented in the `ImgProcessingOptions`:
  
  ```cs
- _imgProxyService.GetUrl(user.avatar, new ImageProxyOptions
+ _imgProxyService.GetUrl(user.Avatar, new ImgProcessingOptions
  {
      Width = 32,
      Height = 32,
