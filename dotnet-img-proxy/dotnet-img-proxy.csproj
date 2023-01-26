@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>DotnetImgProxy</RootNamespace>
-    <PackageId>DotnetImgProxy</PackageId>
+    <RootNamespace>Unitee.ImgProxyClient</RootNamespace>
+    <PackageId>Unitee.ImgProxyClient</PackageId>
     <Authors>Titouan CREACH et Justin VANIER</Authors>
     <Company>Ünitee</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
