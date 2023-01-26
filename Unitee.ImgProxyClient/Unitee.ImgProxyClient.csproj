@@ -3,12 +3,13 @@
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Unitee.ImgProxyClient</RootNamespace>
     <PackageId>Unitee.ImgProxyClient</PackageId>
-    <Authors>Titouan CREACH et Justin VANIER</Authors>
-    <Company>Ünitee</Company>
+    <Authors>Titouan CREACH and Justin VANIER</Authors>
+    <Company>Unitee</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
