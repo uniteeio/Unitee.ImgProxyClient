@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using System.Text;
 
 namespace Unitee.ImgProxyClient;
@@ -17,6 +15,11 @@ public class ImgProxyService
         _commonOptions = commonOptions;
         _key = key;
         _salt = salt;
+    }
+
+    private static string ConcatUrlSegment(string a, string b)
+    {
+        return $"{a.TrimEnd('/')}/{b.TrimStart('/')}";
     }
 
     public string GetUrl(string originalUrl, ImgProcessingOptions? options = null)
@@ -74,15 +77,16 @@ public class ImgProxyService
             processingOptions.Append($"auto_rotate:{(options.AutoRotate.Value ? 1 : 0)}/");
         }
 
-        var path = $"{processingOptions}{b64}";
+        var path = $"/{ConcatUrlSegment(processingOptions.ToString().TrimStart('/'), b64)}";
 
         if (_key is null || _salt is null)
         {
-            return $"{baseUrl}/insecure/{path}";
+
+            return ConcatUrlSegment(ConcatUrlSegment(baseUrl, "insecure"), path);
         }
 
-        var signature = SignerHelper.SignPath(_key, _salt, path);
+        var signedPath = SignerHelper.SignPath(_key, _salt, path);
 
-        return $"{baseUrl}/{signature}/{processingOptions}{b64}";
+        return ConcatUrlSegment(baseUrl, signedPath);
     }
 }
