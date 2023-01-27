@@ -1,4 +1,4 @@
-![Nuget](https://img.shields.io/nuget/v/DotnetImgProxy)
+![Nuget](https://img.shields.io/nuget/v/Unitee.ImgProxyClient)
 
 # Unitee.ImgProxy
 
@@ -6,7 +6,7 @@ Url generation for ImgProxy
 
 ---
 
-https://www.nuget.org/packages/Unitee.ImgProxy/
+https://www.nuget.org/packages/Unitee.ImgProxyClient/
 
 ## Quick start
 
