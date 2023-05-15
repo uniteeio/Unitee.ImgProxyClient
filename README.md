@@ -10,7 +10,7 @@ https://www.nuget.org/packages/Unitee.ImgProxyClient/
 
 ## Quick start
 
-1) Install the package (`dotnet add package Unitee.ImgProxy`)
+1) Install the package (`dotnet add package Unitee.ImgProxyClient`)
 2) Configure your AppSettings:
 
 ```json
